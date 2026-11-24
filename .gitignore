@@ -1,0 +1,14 @@
+# Local Firebase config (public identifiers, per-deployment). The hosted demo has its own copy.
+app/firebase-config.js
+
+# Secrets and local tooling
+.env
+.env.*
+*debug*
+.firebase/
+node_modules/
+package.json
+package-lock.json
+
+# OS noise
+.DS_Store

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Garim — citizen intake, masked on device</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◧</span>
+      <div>
+        <strong>Garim</strong>
+        <span class="sub">Citizen intake, masked on device</span>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="mode">
+        Mode
+        <select id="mode">
+          <option value="auto">Auto (device first)</option>
+          <option value="device">Device-only</option>
+          <option value="cloud">Cloud-preferred</option>
+        </select>
+      </label>
+      <button id="prepare" class="ghost">Prepare on-device model</button>
+      <span id="policyBadge" class="badge muted">policy: —</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="pane">
+      <h2>1 · Citizen message</h2>
+      <textarea id="input" placeholder="Paste a citizen message, drop a .txt, or attach a photo of a paper complaint"></textarea>
+      <div class="row">
+        <label class="filebtn ghost">Attach a file
+          <input type="file" id="file" accept=".txt,image/jpeg,image/png" />
+        </label>
+        <button id="analyze">Analyze on device</button>
+      </div>
+      <p class="hint" id="langNote"></p>
+      <pre id="masked" class="mono small" aria-label="masked text"></pre>
+      <div id="chips" class="chips"></div>
+      <button id="markSelection" class="ghost">Mark as personal data</button>
+    </section>
+
+    <section class="pane">
+      <h2>2 · Triage</h2>
+      <div id="triage" class="stack"></div>
+    </section>
+
+    <section class="pane">
+      <h2>3 · Reply draft</h2>
+      <button id="draft" class="secondary">Draft reply</button>
+      <textarea id="draftOut" placeholder="The draft appears here. Placeholders are restored on this device."></textarea>
+      <button id="restore" class="ghost">Restore names</button>
+      <div id="sourceBadge" class="badge muted">no request yet</div>
+    </section>
+  </main>
+
+  <section class="inspector">
+    <h2>What left this device</h2>
+    <p id="inspectorState" class="muted">Nothing has been sent.</p>
+    <pre id="payload" class="mono small"></pre>
+  </section>
+
+  <footer class="foot">
+    Redaction happens in your browser. The cloud only ever receives masked text.
+  </footer>
+
+  <script type="module" src="./garim.js"></script>
+</body>
+</html>
